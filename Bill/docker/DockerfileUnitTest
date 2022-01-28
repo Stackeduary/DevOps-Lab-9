@@ -1,0 +1,13 @@
+FROM python:3
+
+WORKDIR /usr/src/app
+
+RUN pip install --no-cache-dir pytest pandas
+
+RUN mkdir -p Bill
+
+COPY ./Bill Bill
+
+RUN mkdir report
+
+CMD ["pytest", "--junitxml=./report/test_report.xml", "Bill/src", "Bill/unit-test"]
